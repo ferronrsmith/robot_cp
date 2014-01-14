@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     A test suite with a single test for valid login.
+...
+...               This test has a workflow that is created using keywords in
+...               the imported resource file.
+Resource          resource.txt
+
+*** Test Cases ***
+Valid Login
+    Open Browser To Login Page
+    Input Username    ferronrsmith
+    Input Password    p@ssw0rd
+    Submit Credentials
+    Comment    Welcome Page Should Be Open
+    Sleep    20s
+    Go To App Management Page
+    Login Page Should Be Open
+    [Teardown]    Close Browser
