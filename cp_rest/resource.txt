@@ -13,3 +13,11 @@ Library           OperatingSystem
 ${SERVER}         api.carepass.com/user-directory-api
 ${IDENTITY_ENDPOINT}    https://${SERVER}/users
 ${TOKEN}          myhry5erarfkmbmfcw34uweq
+
+*** Keywords ***
+Make CarePass Request
+    [Arguments]    ${endpoint}    ${verb}    ${token}    ${header}
+    Create Session    cp_api    ${endpoint}
+    ${resp}=    Get    cp_api    ${verb}    headers=${header}
+    ${jsondata}=    To Json    ${resp.content}
+    Return From Keyword    ${jsondata}
