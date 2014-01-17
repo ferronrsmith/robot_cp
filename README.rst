@@ -105,6 +105,7 @@ these commands::
 
     pip install robotframework
     pip install robotframework-selenium2library
+    pip install -U robotframework-requests
 
 __ http://code.google.com/p/robotframework/wiki/Installation
 __ https://github.com/rtomac/robotframework-selenium2library/blob/master/INSTALL.rst

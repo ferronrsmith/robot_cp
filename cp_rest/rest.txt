@@ -1,0 +1,28 @@
+*** Settings ***
+Documentation     A test suite for Identity Endpoint.
+...
+...               This test has a workflow that is created using keywords in
+...               the imported resource file.
+Resource          resource.txt
+
+*** Test Cases ***
+Testing GET /currentUser/biography which pulls users' biography data from CarePass
+    [Tags]    get
+    Create Session    cp_api    ${IDENTITY_ENDPOINT}
+    ${headers}    Create Dictionary    Accept    application/json    Authorization    Bearer ${TOKEN}
+    ${resp}=    Get    cp_api    /currentUser/biography    headers=${headers}
+    ${jsondata}=    To Json    ${resp.content}
+    Dictionary Should Contain Value    ${jsondata}    ferron
+    Dictionary Should Contain Value    ${jsondata}    smith
+    Dictionary Should Contain Value    ${jsondata}    1983-01-01
+
+Testing GET /currentUser which pulls users identity data from CarePass
+    [Tags]    get
+    Create Session    cp_api    ${IDENTITY_ENDPOINT}
+    ${headers}    Create Dictionary    Accept    application/json    Authorization    Bearer ${TOKEN}
+    ${resp}=    Get    cp_api    /currentUser    headers=${headers}
+    ${jsondata}=    To Json    ${resp.content}
+    Dictionary Should Contain Value    ${jsondata}    ferron@medullan.com
+    Dictionary Should Contain Value    ${jsondata}    ferron
+    Dictionary Should Contain Value    ${jsondata}    smith
+    Dictionary Should Contain Value    ${jsondata}    27c5798b3a3e5e71013a89643e2f009c

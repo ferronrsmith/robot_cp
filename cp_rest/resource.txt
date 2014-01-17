@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Collections
+Library           String
+Library           RequestsLibrary
+Library           OperatingSystem
+
+*** Variables ***
+${SERVER}         api.carepass.com/user-directory-api
+${IDENTITY_ENDPOINT}    https://${SERVER}/users
+${TOKEN}          myhry5erarfkmbmfcw34uweq
