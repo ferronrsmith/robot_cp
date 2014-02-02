@@ -1,0 +1,24 @@
+*** Settings ***
+Documentation     A test suite with a single test for valid login.
+...
+...               This test has a workflow that is created using keywords in
+...               the imported resource file.
+Test Teardown     Teardown Take Failure Snapshot
+Suite Teardown     Teardown Browser
+Resource          resource.txt
+
+*** Test Cases ***
+Valid Login
+    Open Browser To Login Page
+    Input Username    ferron.hanse
+    Input Password    Wizard12
+    Submit Credentials
+    Wait Until Keyword Succeeds    50s    5s    Welcome Page Should Be Open
+
+App Manager Should Contain All Apps
+    Go To App Management Page
+    Check App Manager Drop Down For Categories
+
+Successful Logout
+	Logout
+    Login Page Should Be Open

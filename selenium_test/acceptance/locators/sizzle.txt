@@ -4,7 +4,7 @@ Resource          ../resource.txt
 
 *** Test Cases ***
 Find By Id
-    Page Should Contain Element    jquery=#div_id
+    Page Should Contain Element    jquery=div#div_id
     Element Should Contain    jquery=#foo    Text and image
     Click Link    sizzle=#some_id
     Title Should Be    (root)/broken.html
